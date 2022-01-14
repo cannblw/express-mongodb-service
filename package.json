@@ -18,5 +18,8 @@
   "homepage": "https://github.com/cannblw/express-mongodb-service#readme",
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
   }
 }
