@@ -1,16 +1,20 @@
-import { IsDate, IsNumber } from 'class-validator';
+import { IsISO8601, IsNotEmpty, IsNumber } from 'class-validator';
 
 class SearchRequest {
-  @IsDate()
+  @IsISO8601()
+  @IsNotEmpty()
     startDate: string;
 
-  @IsDate()
+  @IsISO8601()
+  @IsNotEmpty()
     endDate: string;
 
   @IsNumber()
+  @IsNotEmpty()
     minCount: number;
 
   @IsNumber()
+  @IsNotEmpty()
     maxCount: number;
 }
 
