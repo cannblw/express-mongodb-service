@@ -2,10 +2,12 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
+    "moduleResolution": "node",
+    "preserveConstEnums": true,
     "rootDir": "./src",
     "outDir": "./build",
     "esModuleInterop": true,
     "strict": true,
-    "baseUrl": "."
+    "baseUrl": "./src"
   }
 }
