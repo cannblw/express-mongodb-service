@@ -6,6 +6,8 @@ import serverless from 'serverless-http';
 import loggerConfig from './config/loggerConfig';
 import errorLoggerConfig from './config/errorLoggerConfig';
 
+import router from './router';
+
 dotenv.config();
 
 const app = express();
@@ -13,7 +15,7 @@ const { PORT } = process.env;
 
 app.use(loggerConfig);
 
-app.post('/', (req, res) => res.send('Express server working'));
+app.use(router);
 
 app.use(errorLoggerConfig);
 
