@@ -8,6 +8,8 @@
     "outDir": "./build",
     "esModuleInterop": true,
     "strict": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
   }
 }
