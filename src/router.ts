@@ -1,4 +1,5 @@
 import express from 'express';
+import HttpStatus from 'http-status-codes';
 
 import getValidationErrors from './extensions/validateBody';
 import SearchRequest from './dto/searchRequest';
@@ -13,7 +14,7 @@ router.post('/', async (req: TypedRequest<SearchRequest>, res: express.Response)
 
   const errors = await getValidationErrors(body);
   if (errors != null) {
-    res.send(new SearchResponse(ErrorCode.INCORRECT_BODY_FORMAT, errors), );
+    res.status(HttpStatus.BAD_REQUEST).send(new SearchResponse(ErrorCode.INCORRECT_BODY_FORMAT, errors));
   }
 });
 
