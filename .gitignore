@@ -5,3 +5,7 @@ build
 
 # OS
 .DS_Store
+
+# Others
+.serverless
+.webpack

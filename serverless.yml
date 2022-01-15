@@ -1,0 +1,31 @@
+service: express-mongodb-service
+frameworkVersion: '2 || 3'
+
+custom:
+  stage: ${opt:stage, 'offline'}
+  region: ${opt:region, 'us-east-1'}
+  serverless-offline:
+    httpPort: ${opt:port, 3000}
+    noPrependStageInUrl: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+  timeout: 10
+  logRetentionInDays: 90
+  logs:
+    httpApi: true
+
+functions:
+  api:
+    handler: build/index.default
+    events:
+      - httpApi:
+          path: /
+          method: POST
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+  - serverless-plugin-typescript-express
