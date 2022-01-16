@@ -25,6 +25,14 @@ class RecordsRepositoryMongo implements RecordsRepository {
               $sum: '$counts'
             }
           }
+        },
+        {
+          $match: {
+            totalCount: {
+              $gt: minCount,
+              $lt: maxCount
+            }
+          }
         }
       ]).toArray() as RecordModel[];
 
