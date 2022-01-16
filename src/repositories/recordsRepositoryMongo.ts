@@ -14,7 +14,9 @@ class RecordsRepositoryMongo implements RecordsRepository {
     endDate: string,
     minCount: number,
     maxCount: number): Promise<RecordModel[]> {
-      const items = await this.client.collection.aggregate([
+      const collection = await this.client.getCollection();
+
+      const items = await collection.aggregate([
         {
           $project: {
             key: 1,
