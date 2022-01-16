@@ -11,8 +11,8 @@ Single endpoint that fetches the data in a MongoDB collection and returns aggreg
 Another option would be to build and run a Docker image from the Dockerfile
 
 ```bash
-docker build --tag expressMongoDbService .
-docker run -e PORT=3000 -p3000:3000  -it expressMongoDbService
+docker build --tag express-mongodb-service .
+docker run --env-file .env -p3000:3000 -d -it express-mongodb-service
 ```
 
 ## Serverless deployment
