@@ -1,4 +1,4 @@
-import ErrorCode from '../enum/errorCode';
+import ErrorCode from '../enum/responseCode';
 import RecordResponse from './recordResponse';
 
 class SearchResponse {
