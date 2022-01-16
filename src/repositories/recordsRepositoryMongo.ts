@@ -9,12 +9,11 @@ class RecordsRepositoryMongo implements RecordsRepository {
     this.client = client;
   }
 
-  async searchItems(startDate: string,
+  async searchItems(
+    startDate: string,
     endDate: string,
     minCount: number,
     maxCount: number): Promise<RecordModel[]> {
-
-
       const items = await this.client.collection.aggregate([
         {
           $project: {
@@ -31,6 +30,10 @@ class RecordsRepositoryMongo implements RecordsRepository {
             totalCount: {
               $gt: minCount,
               $lt: maxCount
+            },
+            createdAt: {
+              $gt: new Date(startDate),
+              $lt: new Date(endDate)
             }
           }
         }
