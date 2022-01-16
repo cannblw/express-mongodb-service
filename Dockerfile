@@ -1,5 +1,5 @@
 #### Build stage ####
-FROM node:17-alpine3.14 as builder
+FROM node:14-alpine as builder
 
 WORKDIR /usr/src/app
 
@@ -14,7 +14,7 @@ RUN npm run build
 
 
 #### Run stage ####
-FROM node:17-alpine3.14
+FROM node:14-alpine
 
 ENV PORT 3000
 
