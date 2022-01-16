@@ -5,7 +5,7 @@ import { sanitize } from "class-sanitizer";
 import HttpStatus from 'http-status-codes';
 
 import SearchResponse from "../dto/searchResponse";
-import ErrorCode from "../enum/errorCode";
+import ErrorCode from "../enum/responseCode";
 
 // Adapted from https://www.linkedin.com/pulse/dto-json-payload-expressjs-validation-middleware-imran-younas
 const dtoValidationMiddleware = (type: any, skipMissingProperties = false): RequestHandler => {
