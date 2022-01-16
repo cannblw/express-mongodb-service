@@ -1,8 +1,8 @@
-import RecordsRepository from "../repositories/recordsRepository";
-import MongoDbClient from "../database/mongoDbClient";
-import RecordsRepositoryMongo from "../repositories/recordsRepositoryMongo";
-import SearchServiceImpl from "./searchServiceImpl";
-import SearchService from "./searchService";
+import RecordsRepository from '../repositories/recordsRepository';
+import MongoDbClient from '../database/mongoDbClient';
+import RecordsRepositoryMongo from '../repositories/recordsRepositoryMongo';
+import SearchServiceImpl from './searchServiceImpl';
+import SearchService from './searchService';
 
 /*
  * Simple configuration to have dependency injection.
@@ -10,7 +10,6 @@ import SearchService from "./searchService";
  * This won't automatically resolve the dependencies, but it's better than
  * hardcoding the implementations in the business logic
  */
-
 
 class ServiceContainer {
   private _recordsRepository: RecordsRepository;

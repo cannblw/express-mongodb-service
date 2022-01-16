@@ -15,21 +15,25 @@ class MongoDbClient {
     if (!this.uri) {
       throw new Error('MongoDB URI could not be found. Please, set the environment variable MONGODB_URI');
     }
-    
+
     if (!this.dbName) {
-      throw new Error('MongoDB database name could not be found. Please, set the environment variable MONGODB_DATABASE');
+      throw new Error(
+        'MongoDB database name could not be found. Please, set the environment variable MONGODB_DATABASE'
+      );
     }
 
     if (!this.collectionName) {
-      throw new Error('MongoDB collection name could not be found. Please, set the environment variable MONGODB_COLLECTION');
+      throw new Error(
+        'MongoDB collection name could not be found. Please, set the environment variable MONGODB_COLLECTION'
+      );
     }
 
     // Non-null assertion operator because we already checked if these values exist
     this.client = new MongoClient(this.uri!);
 
-    this.isInitialized = this.client.connect().then(() => {      
+    this.isInitialized = this.client.connect().then(() => {
       this.db = this.client.db(this.dbName!);
-      
+
       this._collection = this.db.collection(this.collectionName!);
     }); // Don't handle the exception because I want it to stop if it can't connect
   }

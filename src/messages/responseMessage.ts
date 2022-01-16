@@ -1,5 +1,5 @@
 const responseMessage = {
-  SUCCESS: 'Success'
+  SUCCESS: 'Success',
 };
 
 export default responseMessage;

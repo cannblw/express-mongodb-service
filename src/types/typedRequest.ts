@@ -1,7 +1,7 @@
 import express from 'express';
 
 interface TypedRequest<T> extends express.Request {
-  body: T
+  body: T;
 }
 
 export default TypedRequest;

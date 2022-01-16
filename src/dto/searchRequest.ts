@@ -3,19 +3,19 @@ import { IsISO8601, IsNotEmpty, IsNumber } from 'class-validator';
 class SearchRequest {
   @IsISO8601()
   @IsNotEmpty()
-    startDate: string;
+  startDate: string;
 
   @IsISO8601()
   @IsNotEmpty()
-    endDate: string;
+  endDate: string;
 
   @IsNumber()
   @IsNotEmpty()
-    minCount: number;
+  minCount: number;
 
   @IsNumber()
   @IsNotEmpty()
-    maxCount: number;
+  maxCount: number;
 }
 
 export default SearchRequest;

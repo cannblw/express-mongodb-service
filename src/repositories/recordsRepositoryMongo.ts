@@ -1,6 +1,6 @@
-import MongoDbClient from "../database/mongoDbClient";
-import RecordModel from "../models/recordModel";
-import RecordsRepository from "./recordsRepository";
+import MongoDbClient from '../database/mongoDbClient';
+import RecordModel from '../models/recordModel';
+import RecordsRepository from './recordsRepository';
 
 class RecordsRepositoryMongo implements RecordsRepository {
   private readonly client: MongoDbClient;
@@ -9,41 +9,38 @@ class RecordsRepositoryMongo implements RecordsRepository {
     this.client = client;
   }
 
-  async searchItems(
-    startDate: string,
-    endDate: string,
-    minCount: number,
-    maxCount: number): Promise<RecordModel[]> {
-      const collection = await this.client.getCollection();
+  async searchItems(startDate: string, endDate: string, minCount: number, maxCount: number): Promise<RecordModel[]> {
+    const collection = await this.client.getCollection();
 
-      const items = await collection.aggregate([
+    const items = (await collection
+      .aggregate([
         {
           $project: {
             key: 1,
             value: 1,
             createdAt: 1,
             totalCount: {
-              $sum: '$counts'
-            }
-          }
+              $sum: '$counts',
+            },
+          },
         },
         {
           $match: {
             totalCount: {
               $gt: minCount,
-              $lt: maxCount
+              $lt: maxCount,
             },
             createdAt: {
               $gt: new Date(startDate),
-              $lt: new Date(endDate)
-            }
-          }
-        }
-      ]).toArray() as RecordModel[];
+              $lt: new Date(endDate),
+            },
+          },
+        },
+      ])
+      .toArray()) as RecordModel[];
 
-      return items;
+    return items;
   }
-
 }
 
 export default RecordsRepositoryMongo;
