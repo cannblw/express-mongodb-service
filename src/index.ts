@@ -8,11 +8,14 @@ import loggerConfig from './config/loggerConfig';
 import errorLoggerConfig from './config/errorLoggerConfig';
 
 import router from './router';
+import serviceContainer from './services/serviceContainer';
 
 dotenv.config();
 
 const app = express();
 const { PORT } = process.env;
+
+serviceContainer.init();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
