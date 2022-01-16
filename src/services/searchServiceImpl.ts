@@ -1,5 +1,5 @@
 import RecordsRepository from "../repositories/recordsRepository";
-import RecordResponse from "../dto/recordResponse";
+import RecordModel from "../models/recordModel";
 import SearchService from "./searchService";
 
 class SearchServiceImpl implements SearchService {
@@ -13,7 +13,7 @@ class SearchServiceImpl implements SearchService {
     startDate: string,
     endDate: string,
     minCount: number,
-    maxCount: number): Promise<RecordResponse[]> {
+    maxCount: number): Promise<RecordModel[]> {
       return this.recordsRepository.searchItems(startDate, endDate, minCount, maxCount);
   }
 

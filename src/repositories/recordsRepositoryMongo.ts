@@ -1,5 +1,5 @@
 import MongoDbClient from "../database/mongoDbClient";
-import RecordResponse from "../dto/recordResponse";
+import RecordModel from "../models/recordModel";
 import RecordsRepository from "./recordsRepository";
 
 class RecordsRepositoryMongo implements RecordsRepository {
@@ -12,7 +12,7 @@ class RecordsRepositoryMongo implements RecordsRepository {
   async searchItems(startDate: string,
     endDate: string,
     minCount: number,
-    maxCount: number): Promise<RecordResponse[]> {
+    maxCount: number): Promise<RecordModel[]> {
 
 
       const items = await this.client.collection.aggregate([
@@ -25,7 +25,7 @@ class RecordsRepositoryMongo implements RecordsRepository {
           }
         }
         // TODO: Use domain model and map later
-      ]).toArray() as RecordResponse[];
+      ]).toArray() as RecordModel[];
 
       return items;
   }

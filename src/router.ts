@@ -8,6 +8,8 @@ import SearchResponse from './dto/searchResponse';
 import ResponseCode from './enum/responseCode';
 import responseMessage from './messages/responseMessage';
 
+import { mapRecordsToDto } from './mappers/recordMapper';
+
 const router = express.Router();
 
 router.post('/', dtoValidationMiddleware(SearchRequest), async (req: TypedRequest<SearchRequest>, res: express.Response) => {
@@ -19,11 +21,13 @@ router.post('/', dtoValidationMiddleware(SearchRequest), async (req: TypedReques
                     body.endDate,
                     body.minCount,
                     body.maxCount);
+    
+  const recordsDto = mapRecordsToDto(records);
   
   const response = new SearchResponse(
                       ResponseCode.SUCCESS,
                       responseMessage.SUCCESS,
-                      records);
+                      recordsDto);
 
   res.send(response);
 });
