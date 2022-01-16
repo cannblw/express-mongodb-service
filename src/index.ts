@@ -26,9 +26,6 @@ app.use(router);
 
 app.use(errorLoggerConfig);
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server is running at localhost:${PORT}`);
-});
+app.listen(PORT);
 
 export default serverless(app);
