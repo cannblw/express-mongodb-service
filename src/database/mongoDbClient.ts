@@ -5,7 +5,7 @@ class MongoDbClient {
   private db: Db;
   private _collection: Collection<Document>;
 
-  private isInitialized = false;
+  private isInitialized: Promise<boolean | void>;
 
   private readonly uri = process.env.MONGODB_URI;
   private readonly dbName = process.env.MONGODB_DATABASE;
@@ -13,31 +13,30 @@ class MongoDbClient {
 
   constructor() {
     if (!this.uri) {
-      throw new Error('MongoDB URI could not be found. Please, set the environment variable MONGODB_URI')
+      throw new Error('MongoDB URI could not be found. Please, set the environment variable MONGODB_URI');
     }
     
     if (!this.dbName) {
-      throw new Error('MongoDB database name could not be found. Please, set the environment variable MONGODB_DATABASE')
+      throw new Error('MongoDB database name could not be found. Please, set the environment variable MONGODB_DATABASE');
     }
 
     if (!this.collectionName) {
-      throw new Error('MongoDB collection name could not be found. Please, set the environment variable MONGODB_COLLECTION')
+      throw new Error('MongoDB collection name could not be found. Please, set the environment variable MONGODB_COLLECTION');
     }
 
-    this.client = new MongoClient(this.uri);
+    // Non-null assertion operator because we already checked if these values exist
+    this.client = new MongoClient(this.uri!);
 
-    this.client.connect().then(() => {      
-      this.db = this.client.db(this.dbName);
-      // Non-null assertion operator because we already checked if this value exists
+    this.isInitialized = this.client.connect().then(() => {      
+      this.db = this.client.db(this.dbName!);
+      
       this._collection = this.db.collection(this.collectionName!);
-      this.isInitialized = true;
     }); // Don't handle the exception because I want it to stop if it can't connect
   }
 
-  public get collection() {
-    if (!this.isInitialized) {
-      throw new Error('Client not initialized');
-    }
+  // Can't use getter because this is async
+  public async getCollection() {
+    await this.isInitialized;
 
     return this._collection;
   }
