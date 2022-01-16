@@ -49,6 +49,7 @@
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
     "serverless": "^2.71.0",
     "serverless-dotenv-plugin": "^3.12.2",
     "serverless-offline": "^8.3.1",
