@@ -18,10 +18,10 @@ class RecordsRepositoryMongo implements RecordsRepository {
       const items = await this.client.collection.aggregate([
         {
           $project: {
-            "key": 1,
-            "value": 1,
-            "createdAt": 1,
-            "totalCount": {
+            key: 1,
+            value: 1,
+            createdAt: 1,
+            totalCount: {
               $sum: '$counts'
             }
           }
