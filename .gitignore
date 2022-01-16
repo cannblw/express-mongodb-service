@@ -9,3 +9,7 @@ build
 # Others
 .serverless
 .webpack
+
+# Tests
+jest.config.js
+**/*.spec.js
