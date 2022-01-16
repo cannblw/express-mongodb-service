@@ -19,12 +19,13 @@ class RecordsRepositoryMongo implements RecordsRepository {
         {
           $project: {
             "key": 1,
-            "total": {
+            "value": 1,
+            "createdAt": 1,
+            "totalCount": {
               $sum: '$counts'
             }
           }
         }
-        // TODO: Use domain model and map later
       ]).toArray() as RecordModel[];
 
       return items;

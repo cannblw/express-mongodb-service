@@ -1,6 +1,8 @@
 // Can't name it record because Record exists as a type in TypeScript
 class RecordModel {
-  key: number;
+  key: string;
+
+  value: string;
 
   createdAt: Date;
 

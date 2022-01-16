@@ -1,5 +1,5 @@
 class RecordResponse {
-  key: number;
+  key: string;
 
   createdAt: Date;
 
