@@ -9,13 +9,12 @@ class SearchServiceImpl implements SearchService {
     this.recordsRepository = recordsRepository;
   }
 
-  searchItems(startDate: string,
+  searchItems(
+    startDate: string,
     endDate: string,
     minCount: number,
-    maxCount: number): RecordResponse[] {
-
-      // TODO: Implement
-      return [];
+    maxCount: number): Promise<RecordResponse[]> {
+      return this.recordsRepository.searchItems(startDate, endDate, minCount, maxCount);
   }
 
 }

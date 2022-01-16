@@ -14,7 +14,7 @@ router.post('/', dtoValidationMiddleware(SearchRequest), async (req: TypedReques
   const { searchService } = serviceContainer;
   const { body } = req;
 
-  const records = searchService.searchItems(
+  const records = await searchService.searchItems(
                     body.startDate,
                     body.endDate,
                     body.minCount,
