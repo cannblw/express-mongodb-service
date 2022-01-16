@@ -1,4 +1,5 @@
 import express from 'express';
+import HttpStatus from 'http-status-codes';
 
 import SearchRequest from './dto/searchRequest';
 import TypedRequest from './types/typedRequest';
@@ -19,13 +20,19 @@ router.post(
     const { searchService } = serviceContainer;
     const { body } = req;
 
-    const records = await searchService.searchItems(body.startDate, body.endDate, body.minCount, body.maxCount);
+    try {
+      const records = await searchService.searchItems(body.startDate, body.endDate, body.minCount, body.maxCount);
 
-    const recordsDto = mapRecordsToDto(records);
+      const recordsDto = mapRecordsToDto(records);
 
-    const response = new SearchResponse(ResponseCode.SUCCESS, responseMessage.SUCCESS, recordsDto);
+      const response = new SearchResponse(ResponseCode.SUCCESS, responseMessage.SUCCESS, recordsDto);
 
-    res.send(response);
+      res.send(response);
+    } catch {
+      const response = new SearchResponse(ResponseCode.UNKNOWN_ERROR, responseMessage.UNKNOWN_ERROR);
+
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(response);
+    }
   }
 );
 
